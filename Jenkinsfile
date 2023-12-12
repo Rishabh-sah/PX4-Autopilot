@@ -42,6 +42,7 @@ pipeline {
             sh 'make distclean; git clean -ff -x -d .'
             sh 'git fetch --all --tags'
             sh 'make parameters_metadata'
+            sh 'make px4_sitl'
             dir('build/px4_sitl_default/docs') {
               archiveArtifacts(artifacts: 'parameters.md, parameters.xml, parameters.json.xz')
               stash includes: 'parameters.md, parameters.xml, parameters.json.xz', name: 'metadata_parameters'
